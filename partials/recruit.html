@@ -1,0 +1,56 @@
+<div class="container fillForm">
+
+<!-- Form fields to submit first name, last name, year in school, school, phone number, email -->
+
+<form name='rushForm' id='rushForm'>
+	<h2 id="recruitTitle">If you are interested in learning more about our chapter, leave your personal information below:</h2>
+	<div class="form-group">
+		<!-- First Name -->
+		<div class="form-group" ng-class="{ 'has-error': rushForm.fName.$invalid && !rushForm.fName.$pristine }">
+			<label for="fName">First Name:</label><br>
+			<input type="text" id="fName" name="fName" placeholder="John" ng-model="fName" ng-keyup="checkFirst()" required><br>
+			<h2 ng-show="rushForm.fName.$invalid && (!rushForm.fName.$pristine || rushForm.fName.$touched)" class="help-block">First name required</h2>
+		</div>
+		<!-- Last Name -->
+		<div class="form-group" ng-class="{ 'has-error': rushForm.lastName.$invalid && !rushForm.lastName.$pristine }">
+			<label for="lastName">Last Name:</label><br>
+			<input type="text" id="lastName" name="lastName" placeholder="Smith" ng-model="lastName" ng-keyup="checkLast()" required><br>
+			<h2 ng-show="rushForm.lastName.$invalid && (!rushForm.lastName.$pristine || rushForm.lastName.$touched)" class="help-block">Last name required</h2>
+		</div>
+		<!-- Year -->
+		<div class="form-group" ng-class="{ 'has-error': rushForm.year.$invalid && !rushForm.year.$pristine }">
+			<label for="year">Year:</label><br>
+			<select name="year" id="year" ng-model="year" align='middle' required>
+	            <option value="hsSenior">High School Senior</option>
+	            <option value="Freshman">Freshman</option>
+	            <option value="Sophomore">Sophomore</option>
+	            <option value="Junior">Junior</option>
+	            <option value="Senior">Senior</option>
+	        </select><br>
+			<h2 ng-show="rushForm.year.$invalid && (!rushForm.year.$pristine || rushForm.year.$touched)" class="help-block">Year required</h2>
+		</div>
+		<!-- School -->
+		<div class="form-group" ng-class="{ 'has-error': rushForm.school.$invalid && !rushForm.school.$pristine }">
+			<label for="school">School Name:</label><br>
+			<input type="school" id="school" name="school" placeholder="High School/University Name" ng-model="school" required><br>
+			<h2 ng-show="rushForm.school.$invalid && (!rushForm.school.$pristine || rushForm.school.$touched)" class="help-block">School name required</h2>
+		</div>
+		<!-- Phone Number -->
+		<div class="form-group">
+			<label class="box"for="phone">Phone Number:</label><br>
+			<input type="tel" id="phone" name="phone" placeholder="123-456-7890" ng-model="phone" maxlength=12 required></input><br>
+			<h2 ng-show="rushForm.phone.$invalid && (!rushForm.phone.$pristine || rushForm.phone.$touched)" class="help-block">Phone number required</h2>
+		</div>
+		<!-- Email -->
+		<div class="form-group">
+			<label class="box"for="Email">Email:</label><br>
+			<input type="email" id="Email" name="Email" placeholder="email@address.com" ng-model="Email" ng-keyup="checkEmail()" required></input><br>
+			<h2 ng-show="rushForm.Email.$invalid && (!rushForm.Email.$pristine || rushForm.Email.$touched)" class="help-block">Email must be valid</h2>
+		</div>
+
+		<button type="reset" class="btn btn-default" ng-click="reset()">Reset</button>
+		<button type="submit" class="btn btn-primary" ng-model="submitting" ng-disabled="rushForm.$invalid || rushForm.$pristine" ng-click="submit(); reset()">Submit</button>
+		<br><br>
+	</div>
+</form>
+</div>

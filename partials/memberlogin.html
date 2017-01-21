@@ -1,0 +1,56 @@
+<main class="container subDiv">
+    <div ng-show="!userId"><h1>Sorry, you must login before you can view this page</h1></div>
+    <div ng-show="userId">
+        <div class="form-inline pull-right">
+                    <label for="memberSearch" id="magLabel"><i class="fa fa-search"></i></label>
+                    <label for="memberSearch" id="searchLabel">Search</label>
+                    <div class="form-group" id="memberSearchInput">
+                        <input type="text" name="memberSearch" id="memberSearch" class="form-control" autofocus ng-model="searchMember">
+                    </div>
+                </div>
+        <div class="tweet-box write-tweet">
+            <div>
+                <!-- Show image of current user -->
+                <div class="container subUserInfo">
+                    <img class="handleImage" src='{{users[userId].image}}'></img>
+                    <h3 class="handle">{{users[userId].handle}}</h3>
+                    <button ng-click="logOut()" class="btn btn-danger">Logout</button><br>
+                    <button data-toggle="modal" data-target="#myModal" ng-click="openModal()" class="btn btn-warning .btn-xs">Account Settings</button>
+                </div>
+                <!-- Form for writing tweets -->
+                <form name="tweetForm" id="tweet-input">
+
+                    <textarea id="twitBox" placeholder="What's Happening..." name="text" class="form-control" ng-model="newChirp" required ng-maxlength="400"></textarea>
+                    <p class="help-block" ng-show="tweetForm.text.$error.maxlength">400 character limit!</p>
+                    
+                    <div class="form-group send-tweet">
+                        <button type="submit" class="btn btn-primary" ng-click="chirp()" ng-disabled="tweetForm.$invalid">Share <i class="fa fa-bullhorn"></i></button>
+                    </div>
+
+                </form>
+            </div>
+        </div> <!-- end tweet form -->
+        
+        <!-- Show everyone's tweets! -->
+        <div>
+            <!-- Use ng-repeat directive to repeat a div for each element in chirps -->
+            <!-- order by time (in reverse chronological order) -->
+            <div class="tweet-box" ng-repeat="chirp in chirps | orderBy : '-time' | filter:searchMember">
+                <div class="userPost">
+                    <!-- This is an img tag that shows the userImage of that chirp. -->
+                    <!-- Note we access the avatar from the users object -->
+                    <img class="handleImage" src="{{users[chirp.userId].image}}"></img>
+                    
+                    <!-- Use an expressions to show the handle and time of tweet -->
+                    <!-- format the time as a 'medium' -->
+                    <span class="handle"><span class="indent"><strong>{{users[chirp.userId].handle}}</strong></span><span class="time"><em>{{chirp.time | date:'medium'}}</em></span></span>
+                    <div class="tweet">{{chirp.text}}<br><i ng-click="like(chirp)" class="fa fa-thumbs-o-up"></i><span>{{chirp.likes}}  </span><i ng-click="dislike(chirp)" class="fa fa-thumbs-o-down space"></i><span>{{chirp.dislikes}}</span><i class="fa fa-comment-o space"></i><span>{{chirp.comments}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>

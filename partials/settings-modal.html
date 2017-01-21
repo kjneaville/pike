@@ -1,0 +1,31 @@
+<div class="vertical-alignment-helper">
+	<div class="modal-dialog vertical-align-center">
+		<div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title">Adjust your Profile</h4>
+			</div>
+			  <div class="modal-body">
+			  	<div class="left">
+			  	 <label for="haChange">Handle:</label><br><br>
+			  	 <label for="picChange">Image URL:</label><br><br><br>
+			  	 <label for="usaName">Email:</label><br>
+			  	 <label for="pas1">Old Password:</label><br>
+			  	 <label for="pas2">New Password:</label>
+			  	</div>
+			  	<div class="right">
+			  	 <input id="haChange" name="username" type="username" ng-model="handl"><br><br>
+			  	 <input id="piChange" name="username" type="username" ng-model="picUrl"><br><br><br>
+			     <input id="usaName" name="username" type="username" ng-model="upDate"><br>
+			     <input id="pas1" name="password" type="password" ng-model="upDate2"><br>
+			     <input id="pas2" name="password" type="password" ng-model="upDate3"><br><br>
+			     <button class="btn btn-success" type="button" ng-click="changeHand()">Change Handle</button><br>
+			     <button class="btn btn-success" type="button" ng-click="changePic()">Change Profile Picture</button><br>
+			     <button class="btn btn-success" type="button" ng-click="changePass()">Change Password</button>
+			    </div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn btn-primary" type="button" ng-click="cancel()">Accept</button>
+			</div>
+		</div>
+	</div>
+</div>
